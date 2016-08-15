@@ -46,6 +46,12 @@
                 return true;
             } else {return false;}
         }
+
+        /**
+        * Create new key for WebSockets handshake.
+        *
+        * @return WebSockets handshake key (Base64 encoded).
+        */
         private function generateKey($length = 16)
         {
             $c = 0;
@@ -53,6 +59,7 @@
             while ($c++ * 16 < $length) { $tmp .= md5(mt_rand(), true); }
             return base64_encode(substr($tmp, 0, $length));
         }
+        
         private function hybi10Encode($payload, $type = 'text', $masked = true)
         {
             $frameHead = array();
